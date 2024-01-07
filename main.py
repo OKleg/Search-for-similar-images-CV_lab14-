@@ -12,6 +12,7 @@ try:
     import clip
     from PIL import Image
     from io import StringIO, BytesIO
+    from similar import Similar
     print("All Modules Loaded")
 except Exception as e:
     print("Some Modules are Missing  : {}", format(e))
@@ -45,8 +46,12 @@ class FileUpload(object):
         content = uploaded_file.getvalue()
         if isinstance(uploaded_file,BytesIO):
             show_file.image(uploaded_file)
+        return uploaded_file #### TODO ??????? надо к картинке свести тип
 if __name__ == "__main__":
     helper = FileUpload()
-    helper.run()
+    input_image = helper.run()
+    sim = Similar(input_image)
+    similar_images = sim.run()
+    ### TODO: Как-то вывести похожие изображения
     print(torch.cuda.is_available()) # Должно быть True
     
