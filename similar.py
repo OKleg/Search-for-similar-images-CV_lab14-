@@ -9,7 +9,7 @@ try:
     import ast
     import torch
     import clip
-    from PIL import Image
+    import PIL
     print("All Modules Loaded\n torch cuda is_available ")
     print(torch.cuda.is_available())
 except Exception as e:
@@ -38,7 +38,7 @@ class Similar(object):
     #CLIP
     def image_to_vector(self, image, model):
         # Convert image
-        image = Image.fromarray(self.image)
+        image = PIL.Image.fromarray(self.image)
         image = self.transform(image).unsqueeze(0).to(self.device)    
 
         # Encode using CLIP

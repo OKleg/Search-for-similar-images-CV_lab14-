@@ -11,6 +11,7 @@ try:
     import torch
     import clip
     import Image
+    import PIL
     from io import StringIO, BytesIO
     from similar import Similar
     print("All Modules Loaded")
@@ -51,7 +52,7 @@ class FileUpload(object):
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
 
-        cur_image = Image.open(uploaded_file)
+        cur_image = Pil.Image.open(uploaded_file)
         cur_image = np.array(cur_image)
 
         return cur_image
