@@ -3,4 +3,4 @@ pillow
 numpy
 pandas
 torch
-clip
+clip-by-openai
