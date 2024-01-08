@@ -52,7 +52,7 @@ class FileUpload(object):
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
 
-        cur_image = PIL.Image.open(uploaded_file)
+        cur_image = uploaded_file
         cur_image = np.array(cur_image)
 
         return cur_image
