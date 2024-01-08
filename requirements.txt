@@ -1,0 +1,8 @@
+streamlit
+pillow
+numpy
+pandas
+torch
+ast
+clip
+scikit-learn==0.23.2
