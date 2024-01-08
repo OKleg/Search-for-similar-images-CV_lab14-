@@ -40,18 +40,36 @@ class FileUpload(object):
         st.markdown(STYLE, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload file", type=self.fileTypes)
         show_file = st.empty()
+
         if not uploaded_file:
             show_file.info("Please, Upload a image: {}".format(' '.join(self.fileTypes)))
             return
+
+        image = Image.open(uploaded_file)
+        image = np.array(image)
+
         content = uploaded_file.getvalue()
+
         if isinstance(uploaded_file,BytesIO):
-            show_file.image(uploaded_file)
-        return uploaded_file #### TODO ??????? надо к картинке свести тип
+
+            show_file.image(uploaded_file, caption='Uploaded Image.')
+
+        return image
+
 if __name__ == "__main__":
     helper = FileUpload()
     input_image = helper.run()
-    sim = Similar(input_image)
-    similar_images = sim.run()
-    ### TODO: Как-то вывести похожие изображения
-    print(torch.cuda.is_available()) # Должно быть True
+
+    if input_image is not None:
+
+        
+        sim = Similar(input_image)
+        similar_images = sim.run()
+
+        for i, path in enumerate(similar_images, 1):  
+            # Remove the unwanted directory from the path
+
+            path = path.replace('/content/drive/MyDrive', './webapp')
+
+            st.image(path) 
     
