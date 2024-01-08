@@ -1,6 +1,5 @@
-streamlit
 pillow
 numpy
 pandas
 torch
-clip-by-openai
+git+https://github.com/openai/CLIP.git
