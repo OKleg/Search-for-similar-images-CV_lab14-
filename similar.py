@@ -27,8 +27,8 @@ class Similar(object):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model, self.transform = clip.load('ViT-B/32', device=self.device) 
 
-        # Import image db
-        self.df = pd.read_csv('./webapp/data/database.csv')  
+        # Import image db (EXISTED from IPYNB)
+        self.df = pd.read_csv('./webapp/database512.csv')  
         #NearestNeighbors model
         self.NN_model  = NearestNeighbors(metric='cosine').fit(np.array(self.df['vector'].apply(ast.literal_eval).tolist()))  
 
@@ -47,28 +47,11 @@ class Similar(object):
 
         return image_features.cpu().numpy() 
 
-    # Step 5
-    # Create pd.DataFrame for all images in path
-    def create_database(self, path, model):
-        data = []
-        for index, filename in enumerate(os.listdir(path)):
-            img = cv2.imread(os.path.join(path, filename))
-            if img is not None:
-                vector = self.image_to_vector(img, model)
-                if vector is not None:
-                    data.append({'index': index, 'path': os.path.join(path, filename), 'vector': vector.tolist()[0]})
-        df = pd.DataFrame(data)
-        return df   
-    
     # Step 6
 
-    # Save
-    # with open('./webapp/models/NN_model.pkl', 'wb') as f:
-        # pickle.dump(NN_model, f)    
-
-    # Load NN model
-    # with open('./webapp/models/NN_model.pkl', 'rb') as f:
-        # NN_model = pickle.load(f)   
+    #Load NN model
+    with open('./webapp/NN_model.pkl', 'rb') as f:
+        NN_model = pickle.load(f)   
 
     def search_image(self, image, model, NN_model,df, k):
         # Convert image to vector
@@ -84,15 +67,8 @@ class Similar(object):
 
 
     def run(self):
-        image = cv2.imread('./webapp/data/coco128_extend1024/images/000000000061.jpg')
+        image = cv2.imread('./webapp/coco128/train2017/images/000000000061.jpg')
         k  = 4
-
-        #Save
-        with open('./webapp/models/NN_model.pkl', 'wb') as f:
-            pickle.dump(NN_model, f)    
-        #Load NN model
-        with open('./webapp/models/NN_model.pkl', 'rb') as f:
-            NN_model = pickle.load(f)   
 
         # Search for similar images
         similar_images = self.search_image(self, image, self.model, self.NN_model, self.df, k)    
