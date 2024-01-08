@@ -11,7 +11,6 @@ try:
     import torch
     import clip
     import Image
-    %pip install Pillow
     import PIL
     from io import StringIO, BytesIO
     from similar import Similar
