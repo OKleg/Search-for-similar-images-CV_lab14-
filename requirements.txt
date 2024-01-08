@@ -4,4 +4,3 @@ numpy
 pandas
 torch
 clip
-scikit-learn==0.23.2

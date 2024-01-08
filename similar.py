@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.neighbors import NearestNeighbors
+#from sklearn.neighbors import NearestNeighbors
 import torch
 import clip
 import ast
@@ -22,11 +22,11 @@ class Similar(object):
         # Import image db (EXISTED from IPYNB)
         self.df = pd.read_csv('./webapp/database512.csv')  
         #NearestNeighbors model
-        self.NN_model  = NearestNeighbors(metric='cosine').fit(np.array(self.df['vector'].apply(ast.literal_eval).tolist()))  
+        #self.NN_model  = NearestNeighbors(metric='cosine').fit(np.array(self.df['vector'].apply(ast.literal_eval).tolist()))  
 
         #Load NN model
-        #with open('./webapp/NN_model.pkl', 'rb') as f:
-        #   self.NN_model = pickle.load(f)   
+        with open('./webapp/NN_model.pkl', 'rb') as f:
+           self.NN_model = pickle.load(f)   
 
     #CLIP
     def image_to_vector(self, image, model):
