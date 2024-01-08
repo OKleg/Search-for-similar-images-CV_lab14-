@@ -67,11 +67,11 @@ class Similar(object):
 
 
     def run(self):
-        image = cv2.imread('./webapp/coco128/train2017/images/000000000061.jpg')
+        #image = cv2.imread('./webapp/coco128/train2017/images/000000000061.jpg')
         k  = 4
 
         # Search for similar images
-        similar_images = self.search_image(self, image, self.model, self.NN_model, self.df, k)    
+        similar_images = self.search_image(self, self.image, self.model, self.NN_model, self.df, k)    
 
         return similar_images
 
