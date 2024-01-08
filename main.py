@@ -1,22 +1,21 @@
-try:
-    import streamlit as st
-    import cv2
-    import numpy as np
-    import os
-    import sys
-    import pandas as pd
-    import pickle
-    from sklearn.neighbors import NearestNeighbors
-    import ast
-    import torch
-    import clip
-    import Image
-    import PIL
-    from io import StringIO, BytesIO
-    from similar import Similar
-    print("All Modules Loaded")
-except Exception as e:
-    print("Some Modules are Missing  : {}", format(e))
+
+import streamlit as st
+import cv2
+import numpy as np
+import os
+import sys
+import pandas as pd
+import pickle
+from sklearn.neighbors import NearestNeighbors
+import ast
+import torch
+import clip
+import Image
+import PIL
+from io import StringIO, BytesIO
+from similar import Similar
+print("All Modules Loaded")
+
 st.title("Hi")
 
 STYLE = """
@@ -52,7 +51,7 @@ class FileUpload(object):
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
 
-        cur_image = uploaded_file
+        cur_image = uploaded_fil
         cur_image = np.array(cur_image)
 
         return cur_image
