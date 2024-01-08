@@ -62,13 +62,13 @@ class Similar(object):
     
     # Step 6
 
-    #Save
-    with open('./webapp/models/NN_model.pkl', 'wb') as f:
-        pickle.dump(NN_model, f)    
+    # Save
+    # with open('./webapp/models/NN_model.pkl', 'wb') as f:
+        # pickle.dump(NN_model, f)    
 
-    #Load NN model
-    with open('./webapp/models/NN_model.pkl', 'rb') as f:
-        NN_model = pickle.load(f)   
+    # Load NN model
+    # with open('./webapp/models/NN_model.pkl', 'rb') as f:
+        # NN_model = pickle.load(f)   
 
     def search_image(self, image, model, NN_model,df, k):
         # Convert image to vector
@@ -86,6 +86,13 @@ class Similar(object):
     def run(self):
         image = cv2.imread('./webapp/data/coco128_extend1024/images/000000000061.jpg')
         k  = 4
+
+        #Save
+        with open('./webapp/models/NN_model.pkl', 'wb') as f:
+            pickle.dump(NN_model, f)    
+        #Load NN model
+        with open('./webapp/models/NN_model.pkl', 'rb') as f:
+            NN_model = pickle.load(f)   
 
         # Search for similar images
         similar_images = self.search_image(self, image, self.model, self.NN_model, self.df, k)    
