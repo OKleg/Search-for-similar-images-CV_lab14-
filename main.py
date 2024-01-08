@@ -10,7 +10,7 @@ try:
     import ast
     import torch
     import clip
-    from PIL import Image
+    import Image
     from io import StringIO, BytesIO
     from similar import Similar
     print("All Modules Loaded")
