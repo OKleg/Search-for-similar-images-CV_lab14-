@@ -45,16 +45,16 @@ class FileUpload(object):
             show_file.info("Please, Upload a image: {}".format(' '.join(self.fileTypes)))
             return
 
-        image = Image.open(uploaded_file)
-        image = np.array(image)
-
         content = uploaded_file.getvalue()
 
         if isinstance(uploaded_file,BytesIO):
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
 
-        return image
+        cur_image = Image.open(uploaded_file)
+        cur_image = np.array(cur_image)
+
+        return cur_image
 
 if __name__ == "__main__":
     helper = FileUpload()
