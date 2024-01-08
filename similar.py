@@ -1,21 +1,14 @@
-try:
-    import cv2
-    import numpy as np
-    import os
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import pickle
-    from sklearn.neighbors import NearestNeighbors
-    import ast
-    import torch
-    import clip
-    import PIL
-    print("All Modules Loaded\n torch cuda is_available ")
-    print(torch.cuda.is_available())
-except Exception as e:
-    print("Some Modules are Missing  : {}", format(e))
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import NearestNeighbors
+import torch
+import clip
+import ast
+import PIL
 
- 
+print("All Modules Loaded\n torch cuda is_available ")
+print(torch.cuda.is_available())
+
 
 class Similar(object):
 
