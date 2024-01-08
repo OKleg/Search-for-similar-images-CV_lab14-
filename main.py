@@ -47,7 +47,7 @@ class FileUpload(object):
 
         content = uploaded_file.getvalue()
 
-        if isinstance(uploaded_file,BytesIO):
+        if uploaded_file:
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
 
