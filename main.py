@@ -25,9 +25,9 @@ class FileUpload(object):
             Upload File on Streamlit code
             :return:
         """
-        st.info(__doc__)
-        st.markdown(STYLE, unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("Upload file", type=self.fileTypes)
+        # st.info(__doc__)
+        #st.markdown(STYLE, unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload image", type=self.fileTypes)
         st.title("Input Image")
         show_file = st.empty()
 
@@ -44,21 +44,32 @@ class FileUpload(object):
         cur_image = np.array(cur_image)
         
         return cur_image
-
+def change():
+    print("change")
 if __name__ == "__main__":
     helper = FileUpload()
     input_image = helper.run()
-
+    k = st.number_input("Select number similar images", 1, 10, 6, 2)
     if input_image is not None:
 
         st.title("Similar Images")
-        sim = Similar(input_image)
+        sim = Similar(input_image,k)
         similar_images = sim.run()
+        pathes = []
+        indices_on_page = []
+        cols = st.columns(2)
+        
+        groups = []
+        for i in range(0,len(similar_images),2):
+            groups.append(similar_images[i:i+2])
 
-        for i, path in enumerate(similar_images, 1):  
-            # Remove the unwanted directory from the path
+        for group in groups:
+            for i, path in enumerate(group):  
+                # Remove the unwanted directory from the path
 
-            path = path.replace('/content/drive/MyDrive', './webapp')
+                path = path.replace('/content/drive/MyDrive', './webapp')
+                cols[i].image(path,width=200,use_column_width = "auto")
 
-            st.image(path) 
+
+        # st.image(pathes,width=200,use_column_width = "auto", caption=indices_on_page) 
     

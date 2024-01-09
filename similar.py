@@ -1,10 +1,10 @@
-import numpy as np
 import pandas as pd
+#import numpy as np
 #from sklearn.neighbors import NearestNeighbors
+#import ast
 import pickle
 import torch
 import clip
-import ast
 import PIL
 
 print("All Modules Loaded\n torch cuda is_available ")
@@ -25,7 +25,7 @@ class Similar(object):
         #NearestNeighbors model
         #self.NN_model  = NearestNeighbors(metric='cosine').fit(np.array(self.df['vector'].apply(ast.literal_eval).tolist()))  
 
-        #Load NN model
+        #Load NearestNeighbors model
         with open('./webapp/NN_model.pkl', 'rb') as f:
            self.NN_model = pickle.load(f)   
 
@@ -57,8 +57,6 @@ class Similar(object):
         return paths.tolist()   
 
     def run(self):
-        #image = cv2.imread('./webapp/coco128/train2017/images/000000000061.jpg')
-
         # Search for similar images
         similar_images = self.search_image(self.image, self.model, self.NN_model, self.df, self.k)    
 
