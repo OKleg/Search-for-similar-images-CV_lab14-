@@ -5,7 +5,7 @@ from similar import Similar
 
 print("All Modules Loaded")
 
-st.title("Hi")
+st.title("Search for similar images")
 
 STYLE = """
 <style>
@@ -28,6 +28,7 @@ class FileUpload(object):
         st.info(__doc__)
         st.markdown(STYLE, unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Upload file", type=self.fileTypes)
+        st.title("Input Image")
         show_file = st.empty()
 
         if not uploaded_file:
@@ -35,14 +36,13 @@ class FileUpload(object):
             return
 
         content = uploaded_file.getvalue()
-
+        
         if uploaded_file:
 
             show_file.image(uploaded_file, caption='Uploaded Image.')
-
         cur_image = PIL.Image.open(uploaded_file)
         cur_image = np.array(cur_image)
-
+        
         return cur_image
 
 if __name__ == "__main__":
@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     if input_image is not None:
 
-        
+        st.title("Similar Images")
         sim = Similar(input_image)
         similar_images = sim.run()
 
