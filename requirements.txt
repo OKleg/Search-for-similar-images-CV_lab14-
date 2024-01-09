@@ -2,4 +2,5 @@ pillow
 numpy
 pandas
 torch
+pickle
 git+https://github.com/openai/CLIP.git
